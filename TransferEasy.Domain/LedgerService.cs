@@ -1,9 +1,9 @@
 ﻿namespace TransferEasy.Domain;
 public interface ILedgerService
 {
-    Transaction Transfer(double amount, int fromAccountId, int toAccountId);
-    Transaction Deposit(double amount, int toAccountId);
-    Transaction Withdraw(double amount, int fromAccountId);
+    Transaction Transfer(decimal amount, int fromAccountId, int toAccountId);
+    Transaction Deposit(decimal amount, int toAccountId);
+    Transaction Withdraw(decimal amount, int fromAccountId);
 }
 
 public class LedgerService(IStoreTransactions transactionsRepository, IProvideBalance balanceProvider) : ILedgerService
@@ -12,10 +12,10 @@ public class LedgerService(IStoreTransactions transactionsRepository, IProvideBa
     private const int RevenueAccountId = 2;
     private const int ExpensesAccountId = 3;
 
-    private const double CardProcessingFeePercentage = 2.0;
-    private const double WithdrawalFeePercentage = 3.0;
+    private const decimal CardProcessingFeePercentage = 2.0m;
+    private const decimal WithdrawalFeePercentage = 3.0m;
 
-    public Transaction Transfer(double amount, int fromAccountId, int toAccountId)
+    public Transaction Transfer(decimal amount, int fromAccountId, int toAccountId)
     {
         // Validate business
         var originAccountBalance = balanceProvider.GetBalance(fromAccountId);
@@ -39,7 +39,7 @@ public class LedgerService(IStoreTransactions transactionsRepository, IProvideBa
         return transaction;
     }
 
-    public Transaction Deposit(double amount, int toAccountId)
+    public Transaction Deposit(decimal amount, int toAccountId)
     {
         // Create transaction
         var cardProcessingFee = amount * CardProcessingFeePercentage / 100;
@@ -58,7 +58,7 @@ public class LedgerService(IStoreTransactions transactionsRepository, IProvideBa
         return transaction;
     }
 
-    public Transaction Withdraw(double amount, int fromAccountId)
+    public Transaction Withdraw(decimal amount, int fromAccountId)
     {
         // Validate business
         var originAccountBalance = balanceProvider.GetBalance(fromAccountId);

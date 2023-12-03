@@ -57,8 +57,8 @@ public static class AppEndpoints
     }
 }
 
-record TransferRequest(int toAccountId, double Amount);
-record DepositRequest(double Amount);
-record WithdrawalRequest(double Amount);
+record TransferRequest(int toAccountId, decimal Amount);
+record DepositRequest(decimal Amount);
+record WithdrawalRequest(decimal Amount);
 
 record CreateAccountRequest(string Username);

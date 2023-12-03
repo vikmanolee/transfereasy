@@ -2,13 +2,13 @@
 
 public interface IProvideBalance
 {
-    double GetBalance(int accountId);
+    decimal GetBalance(int accountId);
     void UpdateBalances(IEnumerable<TransactionEntry> transactionEntries);
 }
 
 public class BalanceProvider(ICacheAccountBalance accountsCache, IAccountService accountService, IStoreTransactions transactionsRepository) : IProvideBalance
 {
-    public double GetBalance(int accountId)
+    public decimal GetBalance(int accountId)
     {
         var balance = accountsCache.GetAccount(accountId)?.CurrentBalance;
 
@@ -32,7 +32,7 @@ public class BalanceProvider(ICacheAccountBalance accountsCache, IAccountService
         }
     }
 
-    private static double GetBalanceInternal(Account account, IEnumerable<Transaction> transactions)
+    private static decimal GetBalanceInternal(Account account, IEnumerable<Transaction> transactions)
     {
         var entries = transactions.SelectMany(tr => tr.Entries).Select(e => e.Entry);
 

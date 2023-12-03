@@ -3,6 +3,6 @@
 public struct AccountBalance
 {
     public int Id { get; set; }
-    public double CurrentBalance { get; set; }
+    public decimal CurrentBalance { get; set; }
 }
 
