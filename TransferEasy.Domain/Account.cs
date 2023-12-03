@@ -1,10 +1,21 @@
 ﻿namespace TransferEasy.Domain;
 
-public abstract class Account
+public class Account
 {
-    public string Name { get; set; }
     public int Id { get; set; }
-    public List<Entry> Entries { get; set; } = [];
+    public required string Name { get; set; }
+    public AccountNormality Normality { get; set; }
+    public AccountType Type { get; set; }
+}
 
-    public abstract double GetBalance();
+public enum AccountNormality
+{
+    CreditNormal = 1,
+    DebitNormal = 2
+}
+
+public enum AccountType
+{
+    System = 0,
+    Customer
 }

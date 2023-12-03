@@ -1,4 +1,4 @@
-using TransferEasy.Domain;
+using TransferEasy.ApiService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +7,7 @@ builder.AddServiceDefaults();
 
 // Add services to the container.
 builder.Services.AddProblemDetails();
-builder.Services.AddSingleton<ILedgerService, LedgerService>();
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 
@@ -32,25 +32,7 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 });
 
-app.MapGet("/addAccount/{username}", (string username, ILedgerService ledgerService) =>
-{
-    return ledgerService.AddAccount(username);
-});
-
-app.MapGet("/getBalance/{username}", (string username, ILedgerService ledgerService) =>
-{
-    return ledgerService.GetAccountBalance(username);
-});
-
-app.MapPost("/deposit/{accountId}", (int accountId, DepositRequest request, ILedgerService ledgerService) =>
-{
-     ledgerService.Deposit(request.Amount, accountId);
-});
-
-app.MapPost("/withdraw/{accountId}", (int accountId, WithdrawalRequest request, ILedgerService ledgerService) =>
-{
-    ledgerService.Withdraw(request.Amount, accountId);
-});
+AppEndpoints.Map(app);
 
 app.MapDefaultEndpoints();
 
@@ -60,7 +42,3 @@ record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
-
-record DepositRequest(double Amount);
-
-record WithdrawalRequest(double Amount);

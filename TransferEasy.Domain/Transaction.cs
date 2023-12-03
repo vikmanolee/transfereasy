@@ -1,8 +1,8 @@
 ﻿namespace TransferEasy.Domain;
 
-public record Transaction(int Id,
-    IEnumerable<TransactionEntry> Entries, 
-    string Type, 
+public record Transaction(Guid Id,
+    IEnumerable<TransactionEntry> Entries,
+    TransactionType Type,
     DateTime CreatedAt)
 {
     public bool IsValid()
@@ -12,4 +12,11 @@ public record Transaction(int Id,
 
         return debitSum == creditSum;
     }
+}
+
+public enum TransactionType
+{
+    UserTransfer,
+    Deposit,
+    Withdrawal
 }
