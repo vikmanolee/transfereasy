@@ -1,9 +1,6 @@
 ﻿namespace TransferEasy.Domain;
 
-public class InsufficientFundsException : Exception
+public class InsufficientFundsException(decimal current, decimal requested) 
+    : Exception($"Insufficient funds to complete transaction. Cannot remove {requested:F3}, from {current:F3}")
 {
-    public InsufficientFundsException(decimal current, decimal requested) 
-        : base($"Insufficient funds to complete transaction. Cannot transfer {requested:F3}, from {current:F3}")
-    {
-    }
 }

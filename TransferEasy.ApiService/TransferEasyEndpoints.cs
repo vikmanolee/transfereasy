@@ -14,7 +14,7 @@ public static class TransferEasyEndpoints
     {
         app.MapPost("/transfer/{accountId}", (int accountId, TransferRequest request, IApplicationService applicationService) =>
         {
-            applicationService.Transfer(request.Amount, accountId, request.toAccountId);
+            applicationService.Transfer(request.Amount, accountId, request.ToAccountId);
         });
 
         app.MapPost("/deposit/{accountId}", (int accountId, DepositRequest request, IApplicationService applicationService) =>
@@ -57,7 +57,7 @@ public static class TransferEasyEndpoints
     }
 }
 
-record TransferRequest(int toAccountId, decimal Amount);
+record TransferRequest(int ToAccountId, decimal Amount);
 record DepositRequest(decimal Amount);
 record WithdrawalRequest(decimal Amount);
 

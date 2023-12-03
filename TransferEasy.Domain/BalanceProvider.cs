@@ -36,20 +36,17 @@ public class BalanceProvider(ICacheAccountBalance accountsCache, IAccountService
     {
         var entries = transactions.SelectMany(tr => tr.Entries).Select(e => e.Entry);
 
-        switch (account.Normality)
+        return account.Normality switch
         {
-            case AccountNormality.CreditNormal:
-                return entries.Aggregate(0d,
-                    (current, entry) => entry.Direction == EntryDirection.Credit
-                    ? current + entry.Amount
-                    : current - entry.Amount);
-            case AccountNormality.DebitNormal:
-                return entries.Aggregate(0d,
-                    (current, entry) => entry.Direction == EntryDirection.Credit
-                    ? current - entry.Amount
-                    : current + entry.Amount);
-            default:
-                return 0;
-        }
+            AccountNormality.CreditNormal => entries.Aggregate(0m,
+                                (current, entry) => entry.Direction == EntryDirection.Credit
+                                ? current + entry.Amount
+                                : current - entry.Amount),
+            AccountNormality.DebitNormal => entries.Aggregate(0m,
+                                (current, entry) => entry.Direction == EntryDirection.Credit
+                                ? current - entry.Amount
+                                : current + entry.Amount),
+            _ => 0,
+        };
     }
 }
