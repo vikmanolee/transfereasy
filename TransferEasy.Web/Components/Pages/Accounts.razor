@@ -1,0 +1,47 @@
+﻿@page "/accounts"
+@attribute [StreamRendering(true)]
+@attribute [OutputCache(Duration = 5)]
+
+@inject TransferEasyApiClient TransferEasyApi
+
+<PageTitle>Accounts</PageTitle>
+
+<h1>Accounts</h1>
+
+<p>Customer accounts available</p>
+
+@if (accounts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var account in accounts)
+            {
+                <tr>
+                    <td>@account.Id</td>
+                    <td>@account.Name</td>
+                    <td>Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Account[]? accounts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        accounts = await TransferEasyApi.GetAccountsAsync();
+    }
+}

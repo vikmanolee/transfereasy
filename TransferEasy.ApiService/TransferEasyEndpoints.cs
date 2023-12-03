@@ -2,7 +2,7 @@
 
 namespace TransferEasy.ApiService;
 
-public static class AppEndpoints
+public static class TransferEasyEndpoints
 {
     public static void Map(WebApplication app)
     {
