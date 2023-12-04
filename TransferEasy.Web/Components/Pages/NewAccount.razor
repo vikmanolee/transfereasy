@@ -1,0 +1,31 @@
+﻿@page "/newAccount"
+@rendermode InteractiveServer
+
+@inject TransferEasyApiClient TransferEasyApi
+
+<PageTitle>Create Account</PageTitle>
+
+<h1>Create Account</h1>
+
+<form method="post" @onsubmit="CreateAccount" @formname="create-account-form">
+    <AntiforgeryToken />
+    <InputText @bind-Value="newUsername" />
+    <button type="submit">Create</button>
+</form>
+
+<p>@created</p>
+
+@code {
+    private string? newUsername;
+    private string created = string.Empty;
+
+    private async Task CreateAccount()
+    {
+        if (!string.IsNullOrWhiteSpace(newUsername))
+        {
+            await TransferEasyApi.CreateAccountAsync(newUsername);
+            newUsername = null;
+            created = "Account created!";
+        }
+    }
+}

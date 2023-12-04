@@ -1,7 +1,15 @@
 ﻿@page "/"
+@inject TransferEasyApiClient TransferEasyApi
 
 <PageTitle>Home</PageTitle>
 
 <h1>TransferEasy</h1>
 
 The world's fastest money transfer app.
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await TransferEasyApi.InitAsync();
+    }
+}

@@ -8,10 +8,6 @@ public interface ILedgerService
 
 public class LedgerService(IStoreTransactions transactionsRepository, IProvideBalance balanceProvider) : ILedgerService
 {
-    private const int CashAccountId = 1;
-    private const int RevenueAccountId = 2;
-    private const int ExpensesAccountId = 3;
-
     private const decimal CardProcessingFeePercentage = 2.0m;
     private const decimal WithdrawalFeePercentage = 3.0m;
 
@@ -47,8 +43,8 @@ public class LedgerService(IStoreTransactions transactionsRepository, IProvideBa
         var entries = new List<TransactionEntry>()
         {
             new(toAccountId, new (amount, EntryDirection.Credit)),
-            new(CashAccountId, new(amount - cardProcessingFee, EntryDirection.Debit)),
-            new(ExpensesAccountId, new(cardProcessingFee, EntryDirection.Debit))
+            new(AccountsBasic.CashAccountId, new(amount - cardProcessingFee, EntryDirection.Debit)),
+            new(AccountsBasic.ExpensesAccountId, new(cardProcessingFee, EntryDirection.Debit))
         };
 
         // Add transaction
@@ -71,8 +67,8 @@ public class LedgerService(IStoreTransactions transactionsRepository, IProvideBa
         var entries = new List<TransactionEntry>()
         {
             new(fromAccountId, new (amount, EntryDirection.Debit)),
-            new(CashAccountId, new(amount - withdrawalFee, EntryDirection.Credit)),
-            new(RevenueAccountId, new(withdrawalFee, EntryDirection.Credit))
+            new(AccountsBasic.CashAccountId, new(amount - withdrawalFee, EntryDirection.Credit)),
+            new(AccountsBasic.RevenueAccountId, new(withdrawalFee, EntryDirection.Credit))
         };
 
         // Add transaction

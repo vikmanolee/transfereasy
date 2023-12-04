@@ -7,20 +7,16 @@ public interface IStoreAccounts
     IEnumerable<Account> GetAccounts();
 }
 
-public class AccountsRepository : IStoreAccounts
+public class AccountsRepository(AccountContext dbContext) : IStoreAccounts
 {
     public int AddAccount(Account account)
     {
-        throw new NotImplementedException();
+        dbContext.Accounts.Add(account);
+        dbContext.SaveChanges();
+        return account.Id;
     }
 
-    public Account GetAccount(int accountId)
-    {
-        throw new NotImplementedException();
-    }
+    public Account GetAccount(int accountId) => dbContext.Accounts.First(account => account.Id == accountId);
 
-    public IEnumerable<Account> GetAccounts()
-    {
-        throw new NotImplementedException();
-    }
+    public IEnumerable<Account> GetAccounts() => dbContext.Accounts.ToList();
 }

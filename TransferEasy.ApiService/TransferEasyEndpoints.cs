@@ -54,6 +54,11 @@ public static class TransferEasyEndpoints
         {
             return applicationService.GetSystemAccounts();
         });
+
+        app.MapGet("/init", (AccountContext context) =>
+        {
+            context.Database.EnsureCreated();
+        });
     }
 }
 

@@ -1,14 +1,14 @@
-﻿@page "/accounts"
+﻿@page "/accounts/system"
 @attribute [StreamRendering(true)]
 @attribute [OutputCache(Duration = 5)]
 
 @inject TransferEasyApiClient TransferEasyApi
 
-<PageTitle>Accounts</PageTitle>
+<PageTitle>System Accounts</PageTitle>
 
 <h1>Accounts</h1>
 
-<p>Customer accounts available</p>
+<p>System accounts</p>
 
 @if (accounts == null)
 {
@@ -42,6 +42,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        accounts = await TransferEasyApi.GetAccountsAsync();
+        accounts = await TransferEasyApi.GetSystemAccountsAsync();
     }
 }

@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34321.82
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransferEasy.AppHost", "TransferEasy.AppHost\TransferEasy.AppHost.csproj", "{5520051E-3F61-4A17-8773-D4A078EAA884}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransferEasy.AppHost", "TransferEasy.AppHost\TransferEasy.AppHost.csproj", "{5520051E-3F61-4A17-8773-D4A078EAA884}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransferEasy.ServiceDefaults", "TransferEasy.ServiceDefaults\TransferEasy.ServiceDefaults.csproj", "{59DC0526-D12D-468A-A644-C56E072A93BF}"
 EndProject
@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransferEasy.ApiService", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransferEasy.Web", "TransferEasy.Web\TransferEasy.Web.csproj", "{AA5BD69D-7E64-43BA-8C2E-D5A40D718AF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransferEasy.Domain", "TransferEasy.Domain\TransferEasy.Domain.csproj", "{AE4148C7-96E2-49D5-B432-67085C0142D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransferEasy.Domain", "TransferEasy.Domain\TransferEasy.Domain.csproj", "{AE4148C7-96E2-49D5-B432-67085C0142D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

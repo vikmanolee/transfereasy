@@ -1,4 +1,5 @@
 ﻿using TransferEasy.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace TransferEasy.ApiService;
 
