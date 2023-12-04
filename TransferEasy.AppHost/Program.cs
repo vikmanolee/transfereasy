@@ -5,7 +5,8 @@ var cache = builder.AddRedisContainer("cache");
 var db = builder.AddPostgresContainer("postgres", password: "s!llyP@ss").AddDatabase("TransferEasyDB");
 
 var apiservice = builder.AddProject<Projects.TransferEasy_ApiService>("apiservice")
-    .WithReference(db);
+    .WithReference(db)
+    .WithReference(cache);
 
 builder.AddProject<Projects.TransferEasy_Web>("webfrontend")
     .WithReference(cache)

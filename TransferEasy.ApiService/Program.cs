@@ -8,6 +8,8 @@ builder.AddServiceDefaults();
 
 builder.AddNpgsqlDbContext<AccountContext>("TransferEasyDB");
 
+builder.AddRedisDistributedCache("cache");
+
 // Add services to the container.
 builder.Services.AddProblemDetails();
 builder.Services.AddApplicationServices();

@@ -1,32 +1,33 @@
-﻿namespace TransferEasy.Domain;
+﻿using System.Text.Json;
+using Microsoft.Extensions.Caching.Distributed;
+
+namespace TransferEasy.Domain;
 
 public interface ICacheAccountBalance
 {
     AccountBalance? GetAccount(int accountId);
     void AddAccount(AccountBalance account);
-    void UpdateAccount(AccountBalance account);
     void RemoveAccount(int accountId);
 }
 
-public class AccountBalanceCache : ICacheAccountBalance
+public class AccountBalanceCache(IDistributedCache cache) : ICacheAccountBalance
 {
     public void AddAccount(AccountBalance account)
     {
-        throw new NotImplementedException();
+        cache.SetString(CacheKey(account.Id), JsonSerializer.Serialize(account));
     }
 
     public AccountBalance? GetAccount(int accountId)
     {
-        throw new NotImplementedException();
+        var cached = cache.GetString(CacheKey(accountId));
+
+        return cached != null ? JsonSerializer.Deserialize<AccountBalance>(cached) : null;
     }
 
     public void RemoveAccount(int accountId)
     {
-        throw new NotImplementedException();
+        cache.Remove(CacheKey(accountId));
     }
 
-    public void UpdateAccount(AccountBalance account)
-    {
-        throw new NotImplementedException();
-    }
+    private static string CacheKey(int accountId) => $"account_balance_{accountId}";
 }
