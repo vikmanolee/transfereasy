@@ -12,6 +12,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransferEasy.Web", "Transfe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransferEasy.Domain", "TransferEasy.Domain\TransferEasy.Domain.csproj", "{AE4148C7-96E2-49D5-B432-67085C0142D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransferEasy.Domain.Models", "TransferEasy.Domain.Models\TransferEasy.Domain.Models.csproj", "{CBE0B305-7698-4FAD-AD8F-B2C1A028E2FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{AE4148C7-96E2-49D5-B432-67085C0142D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE4148C7-96E2-49D5-B432-67085C0142D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE4148C7-96E2-49D5-B432-67085C0142D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBE0B305-7698-4FAD-AD8F-B2C1A028E2FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBE0B305-7698-4FAD-AD8F-B2C1A028E2FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBE0B305-7698-4FAD-AD8F-B2C1A028E2FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBE0B305-7698-4FAD-AD8F-B2C1A028E2FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

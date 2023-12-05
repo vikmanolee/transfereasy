@@ -7,10 +7,13 @@ var db = builder.AddPostgresContainer("postgres", password: "s!llyP@ss").AddData
 
 var cosmosdb = builder.AddAzureCosmosDB("cosmosdb");
 
+var messaging = builder.AddRabbitMQContainer("messagebus");
+
 var apiservice = builder.AddProject<Projects.TransferEasy_ApiService>("apiservice")
     .WithReference(db)
     .WithReference(cache)
-    .WithReference(cosmosdb);
+    .WithReference(cosmosdb)
+    .WithReference(messaging);
 
 builder.AddProject<Projects.TransferEasy_Web>("webfrontend")
     .WithReference(cache)

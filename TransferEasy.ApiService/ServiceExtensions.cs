@@ -1,5 +1,4 @@
 ﻿using TransferEasy.Domain;
-using Microsoft.EntityFrameworkCore;
 
 namespace TransferEasy.ApiService;
 
@@ -17,9 +16,10 @@ public static class ServiceExtensions
         services.AddScoped<IStoreAccounts, AccountsRepository>();
         services.AddScoped<IStoreTransactions, TransactionRepository>();
 
-        services.AddScoped<IHandleCommand, CommandHandler>();
-        services.AddScoped<IHandleEvent, Domain.EventHandler>();
         services.AddScoped<IPublisher, Publisher>();
+
+        services.AddHostedService<CommandHandler>();
+        services.AddHostedService<Domain.EventHandler>();
 
         return services;
     }

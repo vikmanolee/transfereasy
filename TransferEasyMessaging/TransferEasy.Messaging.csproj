@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-TransferEasyMessaging-5d49ec7d-c5a8-4ecd-815d-ed2188fb708e</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.RabbitMQ.Client" Version="8.0.0-preview.1.23557.2" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TransferEasy.Domain.Models\TransferEasy.Domain.Models.csproj" />
+    <ProjectReference Include="..\TransferEasy.ServiceDefaults\TransferEasy.ServiceDefaults.csproj" />
+  </ItemGroup>
+</Project>
