@@ -10,6 +10,8 @@ builder.AddNpgsqlDbContext<AccountContext>("TransferEasyDB");
 
 builder.AddRedisDistributedCache("cache");
 
+builder.AddAzureCosmosDB("CosmosDB");
+
 // Add services to the container.
 builder.Services.AddProblemDetails();
 builder.Services.AddApplicationServices();
